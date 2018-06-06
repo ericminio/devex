@@ -1,0 +1,56 @@
+<div class="modal-md">
+	<div class="modal-content">
+		<div class="modal-header">
+			<div class="modal-title">
+				Edit Your Profile
+				<button class="close"><i class="fa fa-lg fa-times"></i></button>
+			</div>
+		</div>
+		<div class="modal-body">
+			<div class="spacer">
+				<div class="row">
+					<div class="col-xs-12 text-center">
+						<h3><avatar-display url="vm.org.orgImageURL" text="vm.org.name" size="80"></avatar-display></h3>
+						<div><edit-org-image org="vm.org"></edit-org-image></div>
+					</div>
+				</div>			
+			</div>
+			<div class="row">
+				<div class="col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3">
+					<fieldset>
+						<form-input
+							ng-model="vm.org.name"
+							class="col-sm-12"
+							x-form="vm.orgForm"
+							x-options='{
+								"title":"Legal Name of Company",
+								"id":"companyname",
+								"name":"companyname",
+								"placeholder":"Enter your company name"
+							}'>
+						</form-input>
+						<form-input
+							class="col-sm-12"
+							ng-model="vm.org.website"
+							x-form="vm.orgForm"
+							x-options='{
+								"title":"Website",
+								"id":"website",
+								"name":"website",
+								"placeholder":"https://mycompany.com"
+							}'>
+						</form-input>
+					</fieldset>
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<div class="row">
+				<div class="col-xs-12 text-right">
+					<button class="btn btn-lg btn-primary">Save</button>
+					<button class="btn btn-lg btn-default">Cancel</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
