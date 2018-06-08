@@ -2,42 +2,45 @@
 	<div class="modal-content">
 		<div class="modal-header">
 			<div class="modal-title">
-				Edit Your Profile
+				Business Registration
 				<button class="close"><i class="fa fa-lg fa-times"></i></button>
 			</div>
 		</div>
 		<div class="modal-body">
-			<div class="spacer">
-				<div class="row">
-					<div class="col-xs-12 text-center">
-						<h3><avatar-display url="vm.org.orgImageURL" text="vm.org.name" size="80"></avatar-display></h3>
-						<div><edit-org-image org="vm.org"></edit-org-image></div>
-					</div>
-				</div>			
-			</div>
 			<div class="row">
 				<div class="col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3">
 					<fieldset>
 						<form-input
-							ng-model="vm.org.name"
 							class="col-sm-12"
+							ng-model="vm.org.dba"
 							x-form="vm.orgForm"
 							x-options='{
-								"title":"Legal Name of Company",
-								"id":"companyname",
-								"name":"companyname",
-								"placeholder":"Enter your company name"
+								"title":"Doing Business As",
+								"id":"dba",
+								"name":"dba",
+								"placeholder":"e.g. Aurelius"
 							}'>
 						</form-input>
 						<form-input
-							class="col-sm-12"
-							ng-model="vm.org.website"
+							class="col-sm-6"
+							ng-model="vm.org.businessJurisdiction"
 							x-form="vm.orgForm"
 							x-options='{
-								"title":"Website",
-								"id":"website",
-								"name":"website",
-								"placeholder":"https://mycompany.com"
+								"title":"Registration Jurisdiction",
+								"id":"businessJurisdiction",
+								"name":"businessJurisdiction",
+								"placeholder":"Registered In"
+							}'>
+						</form-input>
+						<form-input
+							class="col-sm-6"
+							ng-model="vm.org.businessNumber"
+							x-form="vm.orgForm"
+							x-options='{
+								"title":"Business Registration Number",
+								"id":"businessNumber",
+								"name":"businessNumber",
+								"placeholder":"Business Number"
 							}'>
 						</form-input>
 					</fieldset>

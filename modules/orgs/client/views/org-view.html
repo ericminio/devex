@@ -34,7 +34,7 @@
 						<div class="box-title">Technical Skills</div>
 					</div>
 					<div class="box-section">
-						<skill ng-repeat="capabilitySkill in vm.org.capabilitySkills"><i class="fa fa-lg fa-check-circle-o success"></i>&nbsp; {{capabilitySkill.name}}</skill>
+						<skill ng-repeat="capabilitySkill in vm.capabilitySkills"><i class="fa fa-lg fa-check-circle-o success"></i>&nbsp; {{capabilitySkill.name}}</skill>
 					</div>
 				</div>
 			</div>
@@ -79,12 +79,9 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12">
-				<div class="box">
+				<div class="box box-private">
 					<div class="box-section">
 						<div class="box-title">Business Info</div>
-						<div class="public-private-status">
-							<i class="fa fa-lock"></i>&nbsp; This information is private to you &#8212; public users won't see it.
-						</div>
 					</div>
 					<div class="box-section">
 						<div class="row">
@@ -114,23 +111,25 @@
 							</div>
 						</div>
 					</div>
+					<div class="box-section-info">
+						<i class="fa fa-lg fa-lock"></i>&nbsp; Public users can't see your business info. We keep this so you don't have to enter it again when you submit proposals.
+					</div>
 				</div>
 			</div>
 		</div>
 		<br>
 		<div class="row">
 			<div class="col-xs-12 col-sm-6">
-				<div class="box">
+				<div class="box box-private">
 					<div class="box-section">
 						<div class="box-title">Members</div>
-						<div class="public-private-status"><i class="fa fa-lock"></i> &nbsp;This information is private to you &#8212; public users can't see who the members of your company are.</div>
 					</div>
 					<div class="box-section box-section-warning" ng-if="vm.org.members.length<2">
-						<i class="fa fa-lg fa-exclamation-triangle"></i>&nbsp; To qualify to apply on SWU opportunities, your company needs at least two members.
+						<i class="fa fa-lg fa-exclamation-triangle"></i>&nbsp; You need at least two members to apply on <strong>Sprint With Us</strong> opportunities.
 					</div>
 					<div class="box-section member-list">
 						<member ng-repeat="member in vm.org.members">
-							<avatar-display size="30" url="member.profileImageURL" text="member.displayName"></avatar-display>
+							<avatar-display size="40" url="member.profileImageURL" text="member.displayName"></avatar-display>
 						</member>
 					</div>
 					<div class="box-section">
@@ -142,12 +141,17 @@
 					<div class="box-section">
 						<div class="box-subtitle"><i class="fa fa-envelope"></i>&nbsp; Invitations sent</div>
 						<!-- This should be a list of all emails that have been sent an invitation, but have not accepted yet. Upon acceptance, the member appears in the list and the email disappears from this list. -->
-						<invitee>invitee1@domain.com
-							<!-- If an invitee declines, there should be a message beside -->
-							<span class="gray-light">&nbsp; Declined</span>
-						</invitee>
-						<invitee>invitee1@domain.com</invitee>
-						<invitee>invitee1@domain.com</invitee>
+						<list>
+							<invitee>invitee1@domain.com
+								<!-- If an invitee declines, there should be a message beside -->
+								<span class="gray-light">&nbsp; Declined</span>
+							</invitee>
+							<invitee>invitee1@domain.com</invitee>
+							<invitee>invitee1@domain.com</invitee>
+						</list>
+					</div>
+					<div class="box-section-info">
+						<i class="fa fa-lg fa-lock"></i>&nbsp; Public users can't see who the members of your company are. Your members' capabilities determine your eligibility to apply on <strong>Sprint With Us</strong> opportunities.
 					</div>
 				</div>
 			</div>
@@ -165,10 +169,10 @@
 						You accepted the terms on <strong>{{Date the user accepted terms}}</strong>.
 					</div>
 					<div class="box-section">
-						<a href="/api/proposals/download/terms/rfq1" target="_blank"><i class="fa fa-lg fa-download"></i>&nbsp; Sprint With Us Terms</a>
-						<label class="checkbox-inline checkbox-alone">
+						<div><a href="/api/proposals/download/terms/rfq1" target="_blank"><i class="fa fa-lg fa-download"></i>&nbsp; Sprint With Us Terms</a></div>
+						<div><label class="checkbox-inline checkbox-alone">
 							<input type="checkbox" ng-model="vm.org.isAcceptedTerms" ng-click="vm.save()"> I have read, fully understand, and agree to the Terms &amp; Conditions.
-						</label>
+						</label></div>
 						<!-- Make it so that button is disabled until user checks the input --- then the button should be what saves the acceptance and triggers the "you accepted the terms..." box section above -->
 						<button class="btn btn-primary">Accept</button>
 					</label>
@@ -197,7 +201,32 @@
 						<div class="box-subtitle">Preferred Technical Skills</div>
 					</div>
 					<div class="box-section">
-						<skill ng-repeat="capabilitySkill in vm.capabilitySkills"><i class="fa fa-lg fa-check-circle-o success"></i>&nbsp; {{capabilitySkill.name}}</skill>
+						<div class="row">
+							<div class="col-xs-3 col-sm-6">
+								<skill><i class="fa fa-lg fa-check-circle-o success"></i>&nbsp; OpenShift</skill>
+								<skill class="gray-light"><i class="fa fa-lg fa-circle-o"></i>&nbsp; Scrum</skill>
+								<skill class="gray-light"><i class="fa fa-lg fa-circle-o"></i>&nbsp; wireframing</skill>
+								<skill><i class="fa fa-lg fa-check-circle-o success"></i>&nbsp; Mongo</skill>
+							</div>
+							<div class="col-xs-3 col-sm-6">
+								<skill class="gray-light"><i class="fa fa-lg fa-circle-o"></i>&nbsp; HTML</skill>
+								<skill class="gray-light"><i class="fa fa-lg fa-circle-o"></i>&nbsp; CSS</skill>
+								<skill class="gray-light"><i class="fa fa-lg fa-circle-o"></i>&nbsp; UI design</skill>
+								<skill><i class="fa fa-lg fa-check-circle-o success"></i>&nbsp; Javascript</skill>								
+							</div>
+							<div class="col-xs-3 col-sm-6">
+								<skill class="gray-light"><i class="fa fa-lg fa-circle-o"></i>&nbsp; Kubernetes</skill>
+								<skill><i class="fa fa-lg fa-check-circle-o success"></i>&nbsp; React</skill>
+								<skill><i class="fa fa-lg fa-check-circle-o success"></i>&nbsp; Angular</skill>
+								<skill class="gray-light"><i class="fa fa-lg fa-circle-o"></i>&nbsp; VueJS</skill>
+							</div>
+							<div class="col-xs-3 col-sm-6">
+								<skill class="gray-light"><i class="fa fa-lg fa-circle-o"></i>&nbsp; NodeJS</skill>
+								<skill><i class="fa fa-lg fa-check-circle-o success"></i>&nbsp; .Net Core</skill>
+								<skill class="gray-light"><i class="fa fa-lg fa-circle-o"></i>&nbsp; RESTful API development</skill>
+								<skill class="gray-light"><i class="fa fa-lg fa-circle-o"></i>&nbsp; Postgresql</skill>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
