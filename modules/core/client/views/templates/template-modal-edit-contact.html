@@ -1,0 +1,60 @@
+<div class="modal-md">
+	<div class="modal-content">
+		<div class="modal-header">
+			<div class="modal-title">
+				Contact
+				<button class="close"><i class="fa fa-lg fa-times"></i></button>
+			</div>
+		</div>
+		<div class="modal-body">
+			<div class="row">
+				<div class="col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3">
+					<fieldset>
+						<form-input
+							class="col-sm-12"
+							ng-model="vm.org.contactName"
+							x-form="vm.orgForm"
+							x-options='{
+								"title":"Contact Name",
+								"id":"contactName",
+								"name":"contactName",
+								"placeholder":"Jane Smith"
+							}'>
+						</form-input>
+						<form-input
+							class="col-sm-12"
+							ng-model="vm.org.contactPhone"
+							x-form="vm.orgForm"
+							x-options='{
+								"title":"Contact Phone",
+								"id":"contactPhone",
+								"name":"contactPhone",
+								"placeholder":"e.g. 250-288-0999"
+							}'>
+						</form-input>
+
+						<form-input
+							class="col-sm-12"
+							ng-model="vm.org.contactEmail"
+							x-form="vm.orgForm"
+							x-options='{
+								"title":"Contact Email",
+								"id":"contactEmail",
+								"name":"contactEmail",
+								"placeholder":"name@example.com"
+							}'>
+						</form-input>
+					</fieldset>
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<div class="row">
+				<div class="col-xs-12 text-right">
+					<button class="btn btn-lg btn-primary">Save</button>
+					<button class="btn btn-lg btn-default">Cancel</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

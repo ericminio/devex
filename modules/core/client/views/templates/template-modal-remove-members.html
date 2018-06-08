@@ -1,0 +1,69 @@
+<div class="modal-lg">
+	<div class="modal-content">
+		<div class="modal-header">
+			<button class="close"><i class="fa fa-times"></i></button>
+			<div class="modal-title"><span class="light">Remove Members from</span> {{Company name}}</div>
+		</div>
+		<div class="modal-body">
+			<div class="row">
+				<div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+					<div class="remove-members-list">
+						<!-- This just to demonstrate layout .... replace with code below -->
+						<member>
+							<img class="img img-circle" src="/img/karen-avatar.png">
+							<name>Karen Sinclair</name>
+							<button class="btn btn-remove pull-right">Remove</button>
+						</member>
+						<member>
+							<img class="img img-circle" src="/img/karen-avatar.png">
+							<name>Karen Anderson</name>
+							<button class="btn btn-remove pull-right">Remove</button>
+						</member>
+						<member>
+							<img class="img img-circle" src="/img/karen-avatar.png">
+							<name>Karen Crawley</name>
+							<button class="btn btn-remove pull-right">Remove</button>
+						</member>
+						<member>
+							<img class="img img-circle" src="/img/karen-avatar.png">
+							<name>Kyla Sinclair</name>
+							<button class="btn btn-remove pull-right">Remove</button>
+						</member>
+						<member>
+							<img class="img img-circle" src="/img/sad_avatar.png">
+							<name>Sad Lee Mistaken</name>
+							<button class="btn btn-remove pull-right">Remove</button>
+						</member>
+						<member>
+							<img class="img img-circle" src="/img/ted_avatar.png">
+							<name>Ted Turner</name>
+							<button class="btn btn-remove pull-right">Remove</button>
+						</member>
+						<member>
+							<img class="img img-circle" src="/img/cindy_avatar.png">
+							<name>Cindy Sinclair</name>
+							<button class="btn btn-remove pull-right">Remove</button>
+						</member>
+						<member>
+							<img class="img img-circle" src="/img/billy_avatar.png">
+							<name>Billy Baxter</name>
+							<button class="btn btn-remove pull-right">Remove</button>
+						</member>
+						<member>
+							<img class="img img-circle" src="/img/bob_avatar.png">
+							<name>Bob Breathmint</name>
+							<button class="btn btn-remove pull-right">Remove</button>
+						</member>
+						<!-- This is the code that should be used -->
+						<member ng-repeat="member in vm.org.members">
+							<avatar-display size="50" url="member.profileImageURL" text="member.displayName"></avatar-display>
+						</member>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-lg btn-default pull-right">Close</button>
+		</div>
+	</div>
+</div>
