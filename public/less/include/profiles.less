@@ -1,6 +1,10 @@
+// --------------------------------------------------------------
+// Profile page layout
+// --------------------------------------------------------------
 .profile-header {
+	display: block;
 	padding: 20px 0;
-	border-bottom: 1px solid #e3e3e3;
+	background: #f8f8f8;
 }
 .profile-header-content {
 	display: inline-block;
@@ -22,11 +26,38 @@
 	font-size: 1.1em;
 }
 .profile-body {
-	background: @gray-lighter;
 	min-height: 500px;
 }
+.profile-body-heading {
+	margin: 32px 0 15px;
+	font-size: 1.4em;
+	font-weight: 600;
+	padding-bottom: 5px;
+	border-bottom: 1px solid #f8f8f8;
+}
+@media (min-width: 768px) {
+	.profile-body-heading {
+	margin: 40px 0 15px;
+	}
+}
+.inline-message {
+	color: @gray-light;
+	font-size: .85em;
+}
 
-invitee, capability, skill {
+// --------------------------------------------------------------
+// Members
+// --------------------------------------------------------------
+.member-list, .invitations-list {
+	max-height: 260px;
+	overflow-y: scroll;
+	padding: 20px;
+}
+.invitations-list {
+	background: #f8f8f8;
+	border-radius: 5px;
+}
+invitee, {
 	display: block;
 	padding: 1px 0;
 }
@@ -39,7 +70,31 @@ member:last-child {
 	padding: 0;
 	border-bottom: none;
 }
-.member-list, .invitation-list {
-	max-height: 260px;
-	overflow-y: scroll;
+
+
+// --------------------------------------------------------------
+// Capabilities and Skills
+// --------------------------------------------------------------
+.capabilities-list, .skills-list {
+	display: block;
 }
+capability, skill {
+	display: inline-block;
+	padding: 5px;
+}
+skill {
+	font-size: 0.9em;
+}
+capability.possessed, skill.possessed {
+	font-weight: bold;
+}
+capability.unpossessed, skill.unpossessed {
+	color: #b3b3b3;
+}
+.download-link {
+	display: block;
+	font-size: 1.1em;
+	margin: 10px 0;
+}
+
+

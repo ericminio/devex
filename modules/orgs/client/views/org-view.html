@@ -1,4 +1,4 @@
-<div class="profile-header" style="display: block">
+<div class="profile-header">
 	<div class="container">
 		<img src="/{{vm.org.orgImageURL}}" class="img-rounded profile-header-image">
 		<div class="profile-header-content">
@@ -75,161 +75,165 @@
 -->
 
 <!-- View for Company Admin -->
-<section class="gray-lighter" ng-if="vm.canEdit">
+<div class="profile-body" ng-if="vm.canEdit">
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12">
-				<div class="box box-private">
-					<div class="box-section">
-						<div class="box-title">Business Info</div>
-					</div>
-					<div class="box-section">
-						<div class="row">
-							<div class="col-xs-4">
-								<div class="box-subtitle">Legal Address</div>
-								<div>{{vm.org.address}}</div>
-								<div>{{vm.org.address2}}</div>
-								<div>{{vm.org.city}}, {{vm.org.province}}</div>
-								<div>{{vm.org.postalcode}}</div>
-								<!-- This link should open a modal, size sm, to edit the fields above -->
-								<a href="">Edit</a>
-							</div>
-							<div class="col-xs-4">
-								<div class="box-subtitle">Business Registration</div>
-								<div>{{vm.org.dba}}</div>
-								<div>{{vm.org.businessJurisdiction}}</div>
-								<div>{{vm.org.businessNumber}}</div>
-								<!-- This link should open a modal, size sm, to edit the fields above -->
-								<a href="">Edit</a>
-							</div>
-							<div class="col-xs-4">
-								<div class="box-subtitle">Contact</div>
-								<div>{{vm.org.contactName}}</div>
-								<div>{{vm.org.contactPhone}}</div>
-								<div>{{vm.org.contactEmail}}</div>
-								<a href="">Edit</a>
-							</div>
-						</div>
-					</div>
-					<div class="box-section-info">
-						<i class="fa fa-lg fa-lock"></i>&nbsp; Public users can't see your business info. We keep this so you don't have to enter it again when you submit proposals.
-					</div>
+				<div class="profile-body-heading">Business Info</div>
+			</div>
+		</div>
+		<div class="inline-message">
+			<i class="fa fa-lg fa-lock"></i>&nbsp; Public users can't see your business info. We keep this so you don't have to enter it again when you submit proposals.
+		</div>
+		<div class="row">
+			<div class="col-xs-12 col-sm-4">
+				<div class="list">
+					<div class="list-heading">Legal Address</div>
+					<div>{{vm.org.address}}</div>
+					<div>{{vm.org.address2}}</div>
+					<div>{{vm.org.city}}, {{vm.org.province}}</div>
+					<div>{{vm.org.postalcode}}</div>
+					<!-- This link should open a modal, size sm, to edit the fields above -->
+					<a class="list-footer" href=""><i class="fa fa-pencil"></i> Edit</a>
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-4">
+				<div class="list">
+					<div class="list-heading">Business Registration</div>
+					<div>{{vm.org.dba}}</div>
+					<div>{{vm.org.businessJurisdiction}}</div>
+					<div>{{vm.org.businessNumber}}</div>
+					<!-- This link should open a modal, size sm, to edit the fields above -->
+					<a class="list-footer" href=""><i class="fa fa-pencil"></i> Edit</a>
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-4">
+				<div class="list">
+					<div class="list-heading">Contact</div>
+					<div>{{vm.org.contactName}}</div>
+					<div>{{vm.org.contactPhone}}</div>
+					<div>{{vm.org.contactEmail}}</div>
+					<a class="list-footer" href=""><i class="fa fa-pencil"></i> Edit</a>
 				</div>
 			</div>
 		</div>
-		<br>
+		
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="profile-body-heading">Members</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="inline-message">
+					<i class="fa fa-lg fa-lock"></i>&nbsp; Public users can't see who the members of your company are. Your members' capabilities determine your eligibility to apply on <strong>Sprint With Us</strong> opportunities.
+				</div>
+			</div>
+		</div>
+		
 		<div class="row">
 			<div class="col-xs-12 col-sm-6">
-				<div class="box box-private">
-					<div class="box-section">
-						<div class="box-title">Members</div>
-					</div>
-					<div class="box-section box-section-warning" ng-if="vm.org.members.length<2">
-						<i class="fa fa-lg fa-exclamation-triangle"></i>&nbsp; You need at least two members to apply on <strong>Sprint With Us</strong> opportunities.
-					</div>
-					<div class="box-section member-list">
-						<member ng-repeat="member in vm.org.members">
-							<avatar-display size="40" url="member.profileImageURL" text="member.displayName"></avatar-display>
-						</member>
-					</div>
-					<div class="box-section">
-						<!-- This link should open a modal, size lg, where I'll style the view to invite members -->
-						<button class="btn btn-primary">Invite members</button>
-						<!-- This link should open a modal, size lg, where I'll style the view of a list of all the members with the ability to delete them from the company -->
-						<button class="btn btn-default pull-right">Remove members</button>
-					</div>
-					<div class="box-section">
-						<div class="box-subtitle"><i class="fa fa-envelope"></i>&nbsp; Invitations sent</div>
-						<!-- This should be a list of all emails that have been sent an invitation, but have not accepted yet. Upon acceptance, the member appears in the list and the email disappears from this list. -->
-						<list>
-							<invitee>invitee1@domain.com
-								<!-- If an invitee declines, there should be a message beside -->
-								<span class="gray-light">&nbsp; Declined</span>
-							</invitee>
-							<invitee>invitee1@domain.com</invitee>
-							<invitee>invitee1@domain.com</invitee>
-						</list>
-					</div>
-					<div class="box-section-info">
-						<i class="fa fa-lg fa-lock"></i>&nbsp; Public users can't see who the members of your company are. Your members' capabilities determine your eligibility to apply on <strong>Sprint With Us</strong> opportunities.
-					</div>
+				<div class="alert alert-warning" ng-if="vm.org.members.length<2">
+					<i class="fa fa-lg fa-exclamation-triangle"></i>&nbsp; You need at least two members to apply on <strong>Sprint With Us</strong> opportunities.
+				</div>
+				<div class="list member-list">
+					<member ng-repeat="member in vm.org.members">
+						<avatar-display size="40" url="member.profileImageURL" text="member.displayName"></avatar-display>
+					</member>
+				</div>
+				<div class="button-spacer">
+					<!-- This link should open a modal, size lg, where I'll style the view to invite members -->
+					<button class="btn btn-primary">Invite members</button>
+					<!-- This link should open a modal, size lg, where I'll style the view of a list of all the members with the ability to delete them from the company -->
+					<button class="btn btn-default pull-right">Remove members</button>
 				</div>
 			</div>
 			<div class="hidden-xs col-sm-1"></div>
 			<div class="col-xs-12 col-sm-5">
-				<div class="box">
-					<div class="box-section">
-						<div class="box-title">Sprint With Us Terms</div>
-					</div>
-					<div class="box-section box-section-warning" ng-if="!vm.org.isAcceptedTerms">
-						<i class="fa fa-lg fa-exclamation-triangle"></i>&nbsp; To qualify to apply on SWU opportunities, you need to accept the terms.
-					</div>
-					<!-- Display after user has accepted the Terms -->
-					<div class="box-section" ng-if="vm.org.isAcceptedTerms">
-						You accepted the terms on <strong>{{Date the user accepted terms}}</strong>.
-					</div>
-					<div class="box-section">
-						<div><a href="/api/proposals/download/terms/rfq1" target="_blank"><i class="fa fa-lg fa-download"></i>&nbsp; Sprint With Us Terms</a></div>
-						<div><label class="checkbox-inline checkbox-alone">
-							<input type="checkbox" ng-model="vm.org.isAcceptedTerms" ng-click="vm.save()"> I have read, fully understand, and agree to the Terms &amp; Conditions.
-						</label></div>
-						<!-- Make it so that button is disabled until user checks the input --- then the button should be what saves the acceptance and triggers the "you accepted the terms..." box section above -->
-						<button class="btn btn-primary">Accept</button>
-					</label>
-					</div>
+				<div class="list invitations-list">
+					<div class="list-heading"><i class="fa fa-envelope"></i>&nbsp; Invitations sent</div>
+					<!-- This should be a list of all emails that have been sent an invitation, but have not accepted yet. Upon acceptance, the member appears in the list and the email disappears from this list. -->
+					<invitee>invitee1@domain.com
+						<!-- If an invitee declines, there should be a message beside -->
+						<span class="gray-light">&nbsp; Declined</span>
+					</invitee>
+					<invitee>invitee1@domain.com</invitee>
+					<invitee>invitee1@domain.com</invitee>
 				</div>
-				<br>
-				<div class="box">
-					<div class="box-section">
-						<div class="box-title">Capabilities</div>
-					</div>
-					<div class="box-section box-section-warning" ng-if="!vm.org.isCapable">
-						<i class="fa fa-lg fa-exclamation-triangle"></i>&nbsp; To qualify to apply on SWU opportunities, your members must collectively possess all of these capabilities
-					</div>
-					<div class="box-section">
-						<div ng-repeat="capability in vm.capabilities">
-							<i ng-if="vm.iOppCapabilities[capability.code]" class="fa fa-check-circle-o fa-lg success"></i> 
-							<i ng-if="!vm.iOppCapabilities[capability.code]" class="fa fa-circle-o fa-lg gray-light"></i>
-							<span class="{{capability.labelClass}}" ng-if="vm.iOppCapabilities[capability.code]"> {{capability.name}}</span>
-							<span class="{{capability.labelClass}}" ng-if="!vm.iOppCapabilities[capability.code]" class="fa fa-circle-o fa-lg gray-light"> {{capability.name}}</span>
-						</div>
-					</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="profile-body-heading">Capabilities</div>
+			</div>
+		</div>
+		<div class="alert alert-warning" ng-if="!vm.org.isCapable">
+			<i class="fa fa-lg fa-exclamation-triangle"></i>&nbsp; To apply on <strong>Sprint With Us</strong> opportunities, your members must collectively possess all of these capabilities:
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="list capabilities-list">
+					<capability class="unpossessed"><i class="fa fa-lg fa-circle-o gray-light"></i> Agile Coaching</capability>
+					<capability class="unpossessed"><i class="fa fa-lg fa-circle-o gray-light"></i> Delivery Management</capability>
+					<capability class="unpossessed"><i class="fa fa-lg fa-circle-o gray-light"></i> User Research</capability>
+					<capability class="possessed"><i class="fa fa-lg fa-check-circle-o success"></i> User Experience Design</capability>
+					<capability class="unpossessed"><i class="fa fa-lg fa-circle-o gray-light"></i> Frontend Web Development</capability>
+					<capability class="unpossessed"><i class="fa fa-lg fa-circle-o gray-light"></i> Backend Web Development</capability>
+					<capability class="unpossessed"><i class="fa fa-lg fa-circle-o gray-light"></i> Technical Architecture</capability>
+					<capability class="unpossessed"><i class="fa fa-lg fa-circle-o gray-light"></i> DevOps Engineering</capability>
+					<capability class="unpossessed"><i class="fa fa-lg fa-circle-o gray-light"></i> Security Engineering</capability>
 				</div>
-				<br>
-				<div class="box">
-					<div class="box-section">
-						<div class="box-subtitle">Preferred Technical Skills</div>
-					</div>
-					<div class="box-section">
-						<div class="row">
-							<div class="col-xs-3 col-sm-6">
-								<skill><i class="fa fa-lg fa-check-circle-o success"></i>&nbsp; OpenShift</skill>
-								<skill class="gray-light"><i class="fa fa-lg fa-circle-o"></i>&nbsp; Scrum</skill>
-								<skill class="gray-light"><i class="fa fa-lg fa-circle-o"></i>&nbsp; wireframing</skill>
-								<skill><i class="fa fa-lg fa-check-circle-o success"></i>&nbsp; Mongo</skill>
-							</div>
-							<div class="col-xs-3 col-sm-6">
-								<skill class="gray-light"><i class="fa fa-lg fa-circle-o"></i>&nbsp; HTML</skill>
-								<skill class="gray-light"><i class="fa fa-lg fa-circle-o"></i>&nbsp; CSS</skill>
-								<skill class="gray-light"><i class="fa fa-lg fa-circle-o"></i>&nbsp; UI design</skill>
-								<skill><i class="fa fa-lg fa-check-circle-o success"></i>&nbsp; Javascript</skill>								
-							</div>
-							<div class="col-xs-3 col-sm-6">
-								<skill class="gray-light"><i class="fa fa-lg fa-circle-o"></i>&nbsp; Kubernetes</skill>
-								<skill><i class="fa fa-lg fa-check-circle-o success"></i>&nbsp; React</skill>
-								<skill><i class="fa fa-lg fa-check-circle-o success"></i>&nbsp; Angular</skill>
-								<skill class="gray-light"><i class="fa fa-lg fa-circle-o"></i>&nbsp; VueJS</skill>
-							</div>
-							<div class="col-xs-3 col-sm-6">
-								<skill class="gray-light"><i class="fa fa-lg fa-circle-o"></i>&nbsp; NodeJS</skill>
-								<skill><i class="fa fa-lg fa-check-circle-o success"></i>&nbsp; .Net Core</skill>
-								<skill class="gray-light"><i class="fa fa-lg fa-circle-o"></i>&nbsp; RESTful API development</skill>
-								<skill class="gray-light"><i class="fa fa-lg fa-circle-o"></i>&nbsp; Postgresql</skill>
-							</div>
-						</div>
-					</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="profile-body-heading">Preferred Technical Skills</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="list skills-list">
+					<skill class="unpossessed"><i class="fa fa-lg fa-circle-o gray-light"></i> Scrum</skill>
+					<skill class="possessed"><i class="fa fa-lg fa-circle-o success"></i> Journey mapping</skill>
+					<skill class="possessed"><i class="fa fa-lg fa-circle-o success"></i> HTML</skill>
+					<skill class="possessed"><i class="fa fa-lg fa-circle-o success"></i> CSS</skill>
+					<skill class="possessed"><i class="fa fa-lg fa-circle-o success"></i> UI Design</skill>
+					<skill class="unpossessed"><i class="fa fa-lg fa-circle-o gray-light"></i> OpenShift</skill>
+					<skill class="unpossessed"><i class="fa fa-lg fa-circle-o gray-light"></i> Javascript</skill>
+					<skill class="unpossessed"><i class="fa fa-lg fa-circle-o gray-light"></i> React</skill>
+					<skill class="unpossessed"><i class="fa fa-lg fa-circle-o gray-light"></i> Angular</skill>
+					<skill class="unpossessed"><i class="fa fa-lg fa-circle-o gray-light"></i> Mongo</skill>
+					<skill class="unpossessed"><i class="fa fa-lg fa-circle-o gray-light"></i> Vue JS</skill>
+					<skill class="unpossessed"><i class="fa fa-lg fa-circle-o gray-light"></i> Node JS</skill>
+					<skill class="unpossessed"><i class="fa fa-lg fa-circle-o gray-light"></i> .Net Core</skill>
+					<skill class="unpossessed"><i class="fa fa-lg fa-circle-o gray-light"></i> RESTful API development</skill>
+					<skill class="unpossessed"><i class="fa fa-lg fa-circle-o gray-light"></i> Postgresql</skill>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="profile-body-heading">Sprint With Us Terms</div>
+				<div class="alert alert-warning" ng-if="!vm.org.isAcceptedTerms">
+					<i class="fa fa-lg fa-exclamation-triangle"></i>&nbsp; To apply on <strong>Sprint With Us</strong> opportunities, you need to accept these terms:
+				</div>
+				<div class="button-spacer download-link">
+					<a href="/api/proposals/download/terms/rfq1" target="_blank"><i class="fa fa-lg fa-download"></i>&nbsp; Sprint With Us Terms</a>
+				</div>
+				<label class="checkbox-inline checkbox-alone">
+					<input type="checkbox" ng-model="vm.org.isAcceptedTerms" ng-click="vm.save()"> I have read, fully understand, and agree to the Terms &amp; Conditions.
+				</label>
+				<!-- Make it so that button is disabled until user checks the input --- then the button should be what saves the acceptance and triggers the "you accepted the terms..." box section above -->
+				<div class="button-spacer">
+					<!-- Disable button if checkbox isn't checked yet -->
+					<button class="btn btn-primary">Accept</button>
+				</div>
+				<!-- Display after user has accepted the Terms -->
+				<div ng-if="vm.org.isAcceptedTerms">
+					You accepted the terms on <strong>{{Date the user accepted terms}}</strong>.
 				</div>
 			</div>
 		</div>
 	</div>
-</section>
+</div>
