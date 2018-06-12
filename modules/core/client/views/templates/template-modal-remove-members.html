@@ -1,4 +1,4 @@
-<div class="modal-lg">
+<div class="modal-md">
 	<div class="modal-content">
 		<div class="modal-header">
 			<button class="close"><i class="fa fa-times"></i></button>
@@ -6,53 +6,53 @@
 		</div>
 		<div class="modal-body">
 			<div class="row">
-				<div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+				<div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
 					<div class="remove-members-list">
-						<!-- This just to demonstrate layout .... replace with code below -->
+						<!-- This just to demonstrate layout .... need to use the btn-filter-selected and btn-filter-unselected (as in the old opportunities list page) -->
 						<member>
 							<img class="img img-circle" src="/img/karen-avatar.png">
 							<name>Karen Sinclair</name>
-							<button class="btn btn-remove pull-right">Remove</button>
+							<button class="btn btn-filter-unselected pull-right" uib-btn-checkbox>Remove</button>
 						</member>
 						<member>
 							<img class="img img-circle" src="/img/karen-avatar.png">
 							<name>Karen Anderson</name>
-							<button class="btn btn-remove pull-right">Remove</button>
+							<button class="btn btn-filter-selected pull-right" uib-btn-checkbox>Remove</button>
 						</member>
 						<member>
 							<img class="img img-circle" src="/img/karen-avatar.png">
 							<name>Karen Crawley</name>
-							<button class="btn btn-remove pull-right">Remove</button>
+							<button class="btn btn-filter-unselected pull-right" uib-btn-checkbox>Remove</button>
 						</member>
 						<member>
 							<img class="img img-circle" src="/img/karen-avatar.png">
 							<name>Kyla Sinclair</name>
-							<button class="btn btn-remove pull-right">Remove</button>
+							<button class="btn btn-filter-unselected pull-right" uib-btn-checkbox>Remove</button>
 						</member>
 						<member>
 							<img class="img img-circle" src="/img/sad_avatar.png">
 							<name>Sad Lee Mistaken</name>
-							<button class="btn btn-remove pull-right">Remove</button>
+							<button class="btn btn-filter-unselected pull-right" uib-btn-checkbox>Remove</button>
 						</member>
 						<member>
 							<img class="img img-circle" src="/img/ted_avatar.png">
 							<name>Ted Turner</name>
-							<button class="btn btn-remove pull-right">Remove</button>
+							<button class="btn btn-filter-unselected pull-right" uib-btn-checkbox>Remove</button>
 						</member>
 						<member>
 							<img class="img img-circle" src="/img/cindy_avatar.png">
 							<name>Cindy Sinclair</name>
-							<button class="btn btn-remove pull-right">Remove</button>
+							<button class="btn btn-filter-unselected pull-right" uib-btn-checkbox>Remove</button>
 						</member>
 						<member>
 							<img class="img img-circle" src="/img/billy_avatar.png">
 							<name>Billy Baxter</name>
-							<button class="btn btn-remove pull-right">Remove</button>
+							<button class="btn btn-filter-unselected pull-right" uib-btn-checkbox>Remove</button>
 						</member>
 						<member>
 							<img class="img img-circle" src="/img/bob_avatar.png">
 							<name>Bob Breathmint</name>
-							<button class="btn btn-remove pull-right">Remove</button>
+							<button class="btn btn-filter-unselected pull-right" uib-btn-checkbox>Remove</button>
 						</member>
 						<!-- This is the code that should be used -->
 						<member ng-repeat="member in vm.org.members">
@@ -64,6 +64,8 @@
 		</div>
 		<div class="modal-footer">
 			<button class="btn btn-lg btn-default pull-right">Close</button>
+			<!-- Ideally, this button would be disabled until at least one member was selected from the list above. And I'm not sure if it's overkill, but we might need a subsequent dialog warning ('Are you sure you want to remove these members?') upon clicking? -->
+			<button class="btn btn-lg btn-primary">Remove Selected Members</button>
 		</div>
 	</div>
 </div>
