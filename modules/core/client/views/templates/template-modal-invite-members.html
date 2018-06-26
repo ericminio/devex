@@ -1,3 +1,5 @@
+<!-- I've styled this after Slack. If we need to simplify, that's OK -->
+
 <div class="modal-lg">
 	<div class="modal-content">
 		<div class="modal-header">
@@ -10,6 +12,7 @@
 					<h5 style="padding-left: 5px;">Email Address</h5>
 					<div class="add-email-wrapper">
 						<input type="text" class="form-control" placeholder="name@example.com">
+						<!-- Clicking this button should remove the whole parent div add-email-wrapper -->
 						<button class="btn btn-text-only pull-right"><i class="fa fa-lg fa-times"></i></button>
 					</div>
 					<div class="add-email-wrapper">
@@ -21,7 +24,11 @@
 						<button class="btn btn-text-only pull-right"><i class="fa fa-lg fa-times"></i></button>
 					</div>
 					<div class="add-email-wrapper">
-						<a href=""><i class="fa fa-lg fa-plus-circle"></i>&nbsp; Add another</a> or <a href="">add many at once</a>
+						<!-- Clicking this would add a single add-email-wrapper div -->
+						<a href=""><i class="fa fa-lg fa-plus-circle"></i>&nbsp; Add another</a> 
+						or 
+						<!-- Clicking this would add 3 add-email-wrapper divs -->
+						<a href="">add many at once</a>
 					</div>
 					<div class="button-spacer">
 						<button class="btn btn-block btn-lg btn-primary">Send Invitations</button>

@@ -4,9 +4,11 @@
 		<div class="profile-header-content">
 			<div class="profile-title">{{vm.org.name}}</div>
 			<div class="profile-stats">
-				<a href="{{vm.org.website}}" target="_blank">{{vm.org.website}}</a> &nbsp; &#8226; &nbsp;14 Members 
+				<span><a href="{{vm.org.website}}" target="_blank">{{vm.org.website}}</a> &nbsp; &#8226;</span> 
+				<!-- This line should always show how many members the company has -->
+				&nbsp; <number of members> Members 
 				<span ng-if="vm.canEdit"> &nbsp; &nbsp; 
-					<!-- This link should open a modal, size sm, with fields to edit the company name and website -->
+					<!-- This link should open a modal, size md, templated in template-modal-edit-profile-header.html -->
 					<a href=""><i class="fa fa-pencil"></i> Edit</a>
 				</span>
 			</div>
@@ -14,6 +16,7 @@
 	</div>
 </div>
 
+<!-- This div should display to all users, signed in or not signed in, who are NOT admin on this company -->
 <div class="profile-body" ng-if="!vm.canEdit">
 	<div class="container">
 		<div class="row">
@@ -74,7 +77,7 @@
 </section>
 -->
 
-<!-- View for Company Admin -->
+<!-- This div should display only to Company Admin -->
 <div class="profile-body" ng-if="vm.canEdit">
 	<div class="container">
 		<div class="row">
@@ -93,7 +96,7 @@
 					<div>{{vm.org.address2}}</div>
 					<div>{{vm.org.city}}, {{vm.org.province}}</div>
 					<div>{{vm.org.postalcode}}</div>
-					<!-- This link should open a modal, size sm, to edit the fields above -->
+					<!-- This link should open a modal, size md, templated in template-modal-edit-legal-address.html -->
 					<a class="list-footer" href=""><i class="fa fa-pencil"></i> Edit</a>
 				</div>
 			</div>
@@ -103,7 +106,7 @@
 					<div>{{vm.org.dba}}</div>
 					<div>{{vm.org.businessJurisdiction}}</div>
 					<div>{{vm.org.businessNumber}}</div>
-					<!-- This link should open a modal, size sm, to edit the fields above -->
+					<!-- This link should open a modal, size md, templated in template-modal-edit-business-registration.html -->
 					<a class="list-footer" href=""><i class="fa fa-pencil"></i> Edit</a>
 				</div>
 			</div>
@@ -113,6 +116,7 @@
 					<div>{{vm.org.contactName}}</div>
 					<div>{{vm.org.contactPhone}}</div>
 					<div>{{vm.org.contactEmail}}</div>
+					<!-- This link should open a modal, size md, templated in template-modal-edit-contact.html -->
 					<a class="list-footer" href=""><i class="fa fa-pencil"></i> Edit</a>
 				</div>
 			</div>
@@ -142,23 +146,30 @@
 					</member>
 				</div>
 				<div class="button-spacer">
-					<!-- This link should open a modal, size lg, where I'll style the view to invite members -->
+					<!-- This link should open a modal, size lg, templated in template-modal-invitie-members.html -->
 					<button class="btn btn-primary">Invite members</button>
-					<!-- This link should open a modal, size lg, where I'll style the view of a list of all the members with the ability to delete them from the company -->
+					<!-- This link should open a modal, size lg, templated in template-modal-remove-members.html -->
 					<button class="btn btn-default">Remove members</button>
 				</div>
 			</div>
 			<div class="hidden-xs col-sm-1"></div>
 			<div class="col-xs-12 col-sm-5">
+				<!-- This div should appear only if the user has sent one or more invitations -->
 				<div class="list invitations-list">
 					<div class="list-heading"><i class="fa fa-envelope"></i>&nbsp; Invitations sent</div>
-					<!-- This should be a list of all emails that have been sent an invitation, but have not accepted yet. Upon acceptance, the member appears in the list and the email disappears from this list. -->
+					<!-- This should be a list of all emails that have been sent an invitation, but have not accepted yet. Upon acceptance, the member appears in the list and the email should disappear from this list. -->
 					<invitee>invitee1@domain.com
-						<!-- If an invitee declines, there should be a message beside -->
+						<!-- If an invitee declines, the list should show that: -->
 						<span class="gray-light">&nbsp; Declined</span>
 					</invitee>
-					<invitee>invitee1@domain.com</invitee>
-					<invitee>invitee1@domain.com</invitee>
+					<invitee>invitee1@domain.com
+						<!-- If an invitee hasn't responded yet, the list should show that: -->
+						<span class="gray-light">&nbsp; No response yet</span>
+					</invitee>
+					<invitee>invitee1@domain.com
+						<!-- If an invitee hasn't responded yet, the list should show that: -->
+						<span class="gray-light">&nbsp; No response yet</span>
+					</invitee>
 				</div>
 			</div>
 		</div>
@@ -172,10 +183,13 @@
 		</div>
 		<div class="row">
 			<div class="col-xs-12">
+				<!-- This should display all of the capabilities from the Capabilities module data -->
 				<div class="list capabilities-list">
+					<!-- If the capability is not possessed, it should look like this: -->
 					<capability class="unpossessed"><i class="fa fa-lg fa-circle-o gray-light"></i> Agile Coaching</capability>
 					<capability class="unpossessed"><i class="fa fa-lg fa-circle-o gray-light"></i> Delivery Management</capability>
 					<capability class="unpossessed"><i class="fa fa-lg fa-circle-o gray-light"></i> User Research</capability>
+					<!-- If the capability is possessed, it should look like this: -->
 					<capability class="possessed"><i class="fa fa-lg fa-check-circle-o success"></i> User Experience Design</capability>
 					<capability class="unpossessed"><i class="fa fa-lg fa-circle-o gray-light"></i> Frontend Web Development</capability>
 					<capability class="unpossessed"><i class="fa fa-lg fa-circle-o gray-light"></i> Backend Web Development</capability>
@@ -192,8 +206,11 @@
 		</div>
 		<div class="row">
 			<div class="col-xs-12">
+				<!-- This should display all of the Preferred Technical Skills from the Capabilities module data -->
 				<div class="list skills-list">
+					<!-- If the Preferred Skill is not possessed, it should look like this: -->
 					<skill class="unpossessed"><i class="fa fa-lg fa-circle-o gray-light"></i> Scrum</skill>
+					<!-- If the Preferred Skill is possessed, it should look like this: -->
 					<skill class="possessed"><i class="fa fa-lg fa-check-circle-o success"></i> Journey mapping</skill>
 					<skill class="possessed"><i class="fa fa-lg fa-check-circle-o success"></i> HTML</skill>
 					<skill class="possessed"><i class="fa fa-lg fa-check-circle-o success"></i> CSS</skill>
@@ -215,21 +232,24 @@
 		<div class="row">
 			<div class="col-xs-12">
 				<div class="profile-body-heading">Sprint With Us Terms</div>
+				<!-- This div should appear only if the terms have not been accepted -->
 				<div class="alert alert-warning" ng-if="!vm.org.isAcceptedTerms">
 					<i class="fa fa-lg fa-exclamation-triangle"></i>&nbsp; To apply on <strong>Sprint With Us</strong> opportunities, you need to accept these terms:
 				</div>
+				<!-- This div should persist, before and after the user has accepted the Terms (so they can always download them here) -->
 				<div class="button-spacer download-link">
 					<a href="/api/proposals/download/terms/rfq1" target="_blank"><i class="fa fa-lg fa-download"></i>&nbsp; Sprint With Us Terms</a>
 				</div>
+				<!-- This div should appear only if the terms have not been accepted -->
 				<label class="checkbox-inline checkbox-alone">
 					<input type="checkbox" ng-model="vm.org.isAcceptedTerms" ng-click="vm.save()"> I have read, fully understand, and agree to the Terms &amp; Conditions.
 				</label>
-				<!-- Make it so that button is disabled until user checks the input --- then the button should be what saves the acceptance and triggers the "you accepted the terms..." box section above -->
+				<!-- Make it so that button is disabled until user checks the input above --- then the button should be what saves the acceptance and triggers the "you accepted the terms..." box section above -->
 				<div class="button-spacer">
 					<!-- Disable button if checkbox isn't checked yet -->
 					<button class="btn btn-primary">Accept</button>
 				</div>
-				<!-- Display after user has accepted the Terms -->
+				<!-- This should display in place of the checkbox and button after the user has accepted the Terms -->
 				<div ng-if="vm.org.isAcceptedTerms">
 					You accepted the terms on <strong>{{Date the user accepted terms}}</strong>.
 				</div>
