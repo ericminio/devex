@@ -1,7 +1,5 @@
 const glob = require('glob');
 const path = require('path');
-const webpack = require('webpack');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
     entry: {
@@ -38,14 +36,5 @@ module.exports = {
     },
     resolve: {
         mainFiles: ['index', 'compile/minified/ng-img-crop']
-    },
-    optimization: {
-        splitChunks: {
-            chunks: 'all'
-        }
-    },
-    plugins:
-        [
-            new BundleAnalyzerPlugin()
-        ]
+    }
 }
