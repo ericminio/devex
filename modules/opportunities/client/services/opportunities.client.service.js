@@ -8,7 +8,7 @@
 	// service for database interaction - the $resource for opportunities
 	//
 	// -------------------------------------------------------------------------
-	.factory('OpportunitiesService', function ($resource, $log) {
+	.factory('OpportunitiesService', ['$resource', '$log', function ($resource, $log) {
 		var Opportunity = $resource('/api/opportunities/:opportunityId', {
 			opportunityId: '@_id'
 		}, {
@@ -114,7 +114,7 @@
 			}
 		});
 		return Opportunity;
-	})
+	}])
 	// -------------------------------------------------------------------------
 	//
 	// this is a set of common things that all types of mopportunities need to do
@@ -122,7 +122,7 @@
 	// functions
 	//
 	// -------------------------------------------------------------------------
-	.factory ('OpportunitiesCommon', function ($sce, Authentication, OpportunitiesService, Notification) {
+	.factory ('OpportunitiesCommon', ['$sce', 'Authentication', 'OpportunitiesService', 'Notification', function ($sce, Authentication, OpportunitiesService, Notification) {
 		return {
 			// -------------------------------------------------------------------------
 			//
@@ -300,6 +300,6 @@
 			}
 
 		}
-	})
+	}])
 	;
 }());

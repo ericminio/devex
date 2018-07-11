@@ -1,18 +1,18 @@
 (function () {
-  'use strict';
+	'use strict';
 
-  angular
-    .module('core')
-    .controller('ErrorController', ErrorController);
+	var ErrorController = [
+		'$stateParams', function($stateParams) {
+			var vm = this;
+			vm.errorMessage = null;
 
-  ErrorController.$inject = ['$stateParams'];
+			// Display custom message if it was set
+			if ($stateParams.message) vm.errorMessage = $stateParams.message;
+		}
+	]
 
-  function ErrorController($stateParams) {
-    var vm = this;
-    vm.errorMessage = null;
-
-    // Display custom message if it was set
-    if ($stateParams.message) vm.errorMessage = $stateParams.message;
-  }
+	angular
+	.module('core')
+	.controller('ErrorController', ErrorController);
 }());
 
