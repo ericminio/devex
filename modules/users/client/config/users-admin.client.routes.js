@@ -10,7 +10,7 @@
 
   function routeConfig($stateProvider) {
     $stateProvider
-          .state('admin.govs', {
+        .state('admin.govs', {
         url: '/govs',
         templateUrl: '/modules/users/client/views/admin/list-govs.client.view.html',
         controller: 'GovListController',
@@ -73,9 +73,9 @@
           vm.users = users;
         },
         resolve: {
-          users: function (AdminService) {
+          users: ['AdminService', function (AdminService) {
             return AdminService.listopps().$promise;
-          }
+          }]
         }
       })
       .state('admin.notifymeets', {
@@ -87,9 +87,9 @@
           vm.users = users;
         },
         resolve: {
-          users: function (AdminService) {
+          users: ['AdminService', function (AdminService) {
             return AdminService.listmeets().$promise;
-          }
+          }]
         }
       })
       .state('admin.user-edit', {

@@ -35,7 +35,7 @@
 			restrict: 'EAC',
 			// replace: true,
 			template : '<button type="button" class="btn btn-sm btn-default" ng-click="wsx.edit()">Upload new picture</button>',
-			controller: function ($scope, $uibModal) {
+			controller: ['$scope', '$uibModal', function ($scope, $uibModal) {
 				var wsx = this;
 				var uploadurl = '/api/users/picture';
 				if ($scope.org) {
@@ -47,7 +47,7 @@
 						templateUrl: '/modules/users/client/views/settings/change-profile-modal.html',
 						controllerAs: 'qqq',
 						bindToController: true,
-						controller: function ($state, $timeout, Authentication, $uibModalInstance, Upload, Notification) {
+						controller: ['$state', '$timeout', 'Authentication', '$uibModalInstance', 'Upload', 'Notification', function ($state, $timeout, Authentication, $uibModalInstance, Upload, Notification) {
 							var qqq = this;
 							qqq.user = Authentication.user;
 
@@ -107,12 +107,12 @@
 								Notification.error({ message: response.message, title: '<i class="glyphicon glyphicon-remove"></i> Change profile picture failed!' });
 							}
 
-							qqq.quitnow = function () { $uibModalInstance.dismiss('cancel'); }
-						}
+							qqq.quitnow = function () { $uibModalInstance.close(false); }
+						}]
 					})
 					;
 				}
-			}
+			}]
 		};
 	})
 	;

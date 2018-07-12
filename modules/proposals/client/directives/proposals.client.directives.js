@@ -21,6 +21,7 @@
 	// -------------------------------------------------------------------------
 	.directive ('proposalApply', function () {
 		return {
+			replace: true,
 			restrict     : 'E',
 			controllerAs : 'qaz',
 			templateUrl  : '/modules/proposals/client/views/proposal-apply.directive2.html',
@@ -28,9 +29,10 @@
 				opportunity: '=',
 				proposal: '='
 			},
-			bindToController: true,
-			controller   : function ($scope, ProposalsService, Authentication) {
+			controller   : ['$scope', 'Authentication', function ($scope, Authentication) {
 				var qaz = this;
+				qaz.opportunity = $scope.opportunity;
+				qaz.proposal = $scope.proposal;
 				//
 				// we need to determine which of several possibilities we have
 				//
@@ -73,7 +75,7 @@
 					//
 					else qaz.case = 'needscompany';
 				}
-			}
+			}]
 		};
 	})
 	// -------------------------------------------------------------------------

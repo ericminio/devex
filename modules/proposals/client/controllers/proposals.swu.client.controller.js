@@ -18,16 +18,16 @@
 	// Controller for the master list of programs
 	//
 	// =========================================================================
-	.controller ('ProposalsListController', function (ProposalsService) {
+	.controller ('ProposalsListController', ['ProposalsService', function (ProposalsService) {
 		var ppp           = this;
 		ppp.proposals = ProposalsService.query ();
-	})
+	}])
 	// =========================================================================
 	//
 	// Controller the view of the proposal page
 	//
 	// =========================================================================
-	.controller ('ProposalViewSWUController', function (capabilities, $sce, $state, proposal, ProposalsService, Notification, ask) {
+	.controller ('ProposalViewSWUController', ['capabilities', '$sce', '$state', 'proposal', 'ProposalsService', 'Notification', 'ask', function (capabilities, $sce, $state, proposal, ProposalsService, Notification, ask) {
 		var ppp           = this;
 		ppp.proposal      = proposal;
 		ppp.user          = ppp.proposal.user;
@@ -99,13 +99,14 @@
 				}
 			});
 		};
-	})
+	}])
 	// =========================================================================
 	//
 	// Controller the view of the proposal page
 	//
 	// =========================================================================
-	.controller ('ProposalEditSWUController', function (capabilities, editing, $scope, $sce, ask, Upload, $state, proposal, opportunity, Authentication, ProposalsService, Notification, CapabilitiesMethods, org, TINYMCE_OPTIONS, resources) {
+	.controller ('ProposalEditSWUController', ['capabilities', 'editing', '$scope', '$sce', 'ask', 'Upload', '$state', 'proposal', 'opportunity', 'Authentication', 'ProposalsService', 'Notification', 'CapabilitiesMethods', 'org', 'TINYMCE_OPTIONS', 'resource',
+	function (capabilities, editing, $scope, $sce, ask, Upload, $state, proposal, opportunity, Authentication, ProposalsService, Notification, CapabilitiesMethods, org, TINYMCE_OPTIONS, resources) {
 		var ppp                                   = this;
 		var _init = function () {
 			ppp.trust    = $sce.trustAsHtml;
@@ -733,6 +734,6 @@
 		// -------------------------------------------------------------------------
 		_init ();
 		setSkills ();
-	})
+	}])
 	;
 }());

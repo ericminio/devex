@@ -14,7 +14,7 @@
 				text: '='
 			},
 			template: '<span><img class="img-circle" width="{{ avat.size }}" height="{{ avat.size }}" src="{{ avat.fullurl }}"> &nbsp; {{ avat.text }}</img></span>',
-			controller: function ($scope) {
+			controller: ['$scope', function ($scope) {
 				var avat = this;
 				var seturl = function () {
 					var url = $scope.url;
@@ -31,7 +31,7 @@
 						seturl ();
 					}
 				});
-			},
+			}],
 			controllerAs: 'avat',
 			restrict: 'EAC'
 		};
@@ -43,7 +43,7 @@
 				badges : '='
 			},
 			restrict: 'EAC',
-			template : function (elem, attrs) {
+			template : function (attrs) {
 				var badges = attrs.badges;
 				var isarray = false;
 				var isarrayofobjects = false;

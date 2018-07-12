@@ -12,7 +12,7 @@
 			controllerAs : 'vm',
 			scope        : {},
 			templateUrl  : '/modules/programs/client/views/list.programs.directive.html',
-			controller   : function ($scope, ProgramsService, Authentication, Notification) {
+			controller   : ['ProgramsService', 'Authentication', 'Notification', function (ProgramsService, Authentication, Notification) {
 				var vm = this;
 				var isAdmin  = Authentication.user && !!~Authentication.user.roles.indexOf ('admin');
 				var isGov    = Authentication.user && !!~Authentication.user.roles.indexOf ('gov');
@@ -59,7 +59,7 @@
 						});
 					});
 				};
-			}
+			}]
 		}
 	})
 	;

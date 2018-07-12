@@ -345,53 +345,39 @@
 						});
 					}
 				});
-				vm.removeMember = function (member) {
-					ask.yesNo ('Are you sure you want to remove this user from your company? If you have added them to a proposal, you may not longer qualify to apply on the opportunity.')
-					.then (function (yes) {
-						if (yes) {
-							OrgsService.removeUser ({
-								orgId: vm.org._id,
-								userId: member._id
-							}).$promise.then (function (org) {
-								vm.refresh ();
-							});
-						}
-					});
-				};
-				vm.save = function () {
+			};
+			vm.save = function () {
+				vm.orgForm.$setPristine ();
+				vm.org.createOrUpdate ()
+				.then (function () {
+					vm.emaillist = '';
+					CapabilitiesMethods.init (vm, vm.org, capabilities);
 					vm.orgForm.$setPristine ();
-					vm.org.createOrUpdate ()
-					.then (function () {
-						vm.emaillist = '';
-						CapabilitiesMethods.init (vm, vm.org, capabilities);
-						vm.orgForm.$setPristine ();
-						Notification.success ({
-							message : '<i class="fa fa-3x fa-check-circle"></i><br> <h4>Congrats! Your company is now qualified for Sprint With Us.</h4>'
-						});
-						$rootScope.$broadcast('updateOrg', 'done');
-					})
-				};
-				vm.displayResults = function (result) {
-					if (!result.emaillist) return Promise.resolve ();
-					return new Promise (function (resolve, reject) {
-						modalService.showModal ({
-							size: 'sm',
-							templateUrl: '/modules/orgs/client/views/org-members-results.html',
-							controller: function ($scope, $uibModalInstance) {
-								$scope.data = {
-									found    : result.emaillist.found,
-									notfound : result.emaillist.notfound
-								};
-								$scope.close = function () {
-									$uibModalInstance.close ();
-								};
-							}
-						}, {
-						})
-						.then (resolve, reject);
+					Notification.success ({
+						message : '<i class="fa fa-3x fa-check-circle"></i><br> <h4>Congrats! Your company is now qualified for Sprint With Us.</h4>'
 					});
-				};
-
+					$rootScope.$broadcast('updateOrg', 'done');
+				})
+			};
+			vm.displayResults = function (result) {
+				if (!result.emaillist) return Promise.resolve ();
+				return new Promise (function (resolve, reject) {
+					modalService.showModal ({
+						size: 'sm',
+						templateUrl: '/modules/orgs/client/views/org-members-results.html',
+						controller: ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
+							$scope.data = {
+								found    : result.emaillist.found,
+								notfound : result.emaillist.notfound
+							};
+							$scope.close = function () {
+								$uibModalInstance.close ();
+							};
+						}]
+					}, {
+					})
+					.then(resolve, reject);
+				});
 			}
 		}
 	])

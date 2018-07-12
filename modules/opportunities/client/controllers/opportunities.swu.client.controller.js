@@ -24,7 +24,8 @@
 	// Controller the view of the opportunity page
 	//
 	// =========================================================================
-	.controller('OpportunityViewSWUController', function (capabilities, $state, $stateParams, $sce, org, opportunity, Authentication, OpportunitiesService, ProposalsService, Notification, modalService, ask, myproposal, CapabilitiesMethods, OpportunitiesCommon) {
+	.controller('OpportunityViewSWUController', ['capabilities', '$state', '$stateParams', '$sce', 'org', 'opportunity', 'Authentication', 'OpportunitiesService', 'Notification', 'ask', 'myproposal', 'CapabilitiesMethods', 'OpportunitiesCommon',
+		function (capabilities, $state, $stateParams, $sce, org, opportunity, Authentication, OpportunitiesService, Notification, ask, myproposal, CapabilitiesMethods, OpportunitiesCommon) {
 		if (!opportunity) {
 			console.error ('no opportunity provided');
 			$state.go('opportunities.list');
@@ -233,13 +234,14 @@
 				}
 			});
 		};
-	})
+	}])
 	// =========================================================================
 	//
 	// Controller the view of the opportunity page
 	//
 	// =========================================================================
-	.controller('OpportunityEditSWUController', function ($scope, capabilities, $state, $stateParams, $window, $sce, opportunity, editing, projects, Authentication, Notification, dataService, modalService, $q, ask, uibButtonConfig, CapabilitySkillsService, CapabilitiesMethods, TINYMCE_OPTIONS, OpportunitiesCommon) {
+	.controller('OpportunityEditSWUController', ['$scope', 'capabilities', '$state', '$stateParams', '$window', '$sce', 'opportunity', 'editing', 'projects', 'Authentication', 'Notification', 'dataService', 'ask', 'uibButtonConfig', 'CapabilitiesMethods', 'TINYMCE_OPTIONS', 'OpportunitiesCommon',
+	function ($scope, capabilities, $state, $stateParams, $window, $sce, opportunity, editing, projects, Authentication, Notification, dataService, ask, uibButtonConfig, CapabilitiesMethods, TINYMCE_OPTIONS, OpportunitiesCommon) {
 		uibButtonConfig.activeClass = 'custombuttonbackground';
 		var vm                      = this;
 		vm.trust                    = $sce.trustAsHtml;
@@ -765,6 +767,6 @@
 		vm.toggleHelp = function(field) {
 			vm.displayHelp[field] = ! vm.displayHelp[field];
 		};
-	})
+	}])
 	;
 }());
