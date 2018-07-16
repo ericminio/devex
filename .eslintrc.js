@@ -70,5 +70,8 @@ module.exports = {
     __TESTING__: true,
     _: false,
     ApplicationConfiguration: true
+  },
+  parserOptions: {
+    sourceType: "module"
   }
 };

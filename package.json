@@ -20,7 +20,7 @@
     "dev": "gulp default",
     "quiet": "gulp quiet",
     "debug": "gulp debug",
-    "pack": "webpack --display-error-details"
+    "pack": "webpack"
   },
   "dependencies": {
     "acl": "~0.4.9",
@@ -34,7 +34,7 @@
     "angular-ui-bootstrap": "~1.2.1",
     "angular-ui-notification": "~0.3.6",
     "angular-ui-router": "~1.0.18",
-    "angular-ui-tinymce": "0.0.19",
+    "angular-ui-tinymce": "latest",
     "assets-webpack-plugin": "^3.8.4",
     "async": "~2.6.1",
     "body-parser": "~1.18.3",
@@ -57,7 +57,6 @@
     "helmet": "~3.12.1",
     "helper-markdown": "^1.0.0",
     "html-to-text": "^4.0.0",
-    "imports-loader": "^0.8.0",
     "jasmine-core": "~3.1.0",
     "jszip": "^3.1.4",
     "lodash": "~4.17.10",
@@ -96,6 +95,7 @@
   },
   "devDependencies": {
     "coveralls": "~3.0.1",
+    "css-loader": "^1.0.0",
     "del": "^3.0.0",
     "dotenv": "^5.0.1",
     "eslint": "~4.19.1",
@@ -103,6 +103,8 @@
     "eslint-plugin-import": "^2.12.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.8.2",
+    "exports-loader": "^0.7.0",
+    "file-loader": "^1.1.11",
     "gulp": "~3.9.1",
     "gulp-angular-templatecache": "~2.2.0",
     "gulp-autoprefixer": "~5.0.0",
@@ -124,6 +126,7 @@
     "gulp-sass": "4.0.1",
     "gulp-uglify": "~3.0.0",
     "gulp-util": "~3.0.7",
+    "imports-loader": "^0.8.0",
     "istanbul": "~0.4.2",
     "karma": "~2.0.2",
     "karma-chrome-launcher": "~2.2.0",
@@ -137,7 +140,9 @@
     "run-sequence": "~2.2.1",
     "semver": "~5.5.0",
     "should": "~13.2.1",
+    "style-loader": "^0.21.0",
     "supertest": "~3.1.0",
+    "url-loader": "^1.0.1",
     "webpack-bundle-analyzer": "^2.13.1",
     "webpack-cli": "^3.0.8"
   }

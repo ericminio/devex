@@ -1,3 +1,21 @@
+// Import TinyMCE 4 here so that webpack picks it up - unfortunately, it has to be imported in pieces due to the way the module is bundled
+import 'tinymce/tinymce';
+import 'tinymce/themes/modern/theme';
+
+import 'tinymce/plugins/link';
+import 'tinymce/plugins/textcolor';
+import 'tinymce/plugins/lists';
+import 'tinymce/plugins/advlist';
+
+import 'tinymce/skins/lightgray/skin.min.css';
+import 'tinymce/skins/lightgray/content.min.css';
+
+// require.context(
+//   'file-loader?name=[path][name].[ext]&context=node_modules/tinymce!tinymce/skins',
+//   true,
+//   /.*/
+// );
+
 (function () {
 	'use strict';
 
@@ -35,7 +53,9 @@
 		elementpath : false,
 		plugins     : 'textcolor lists advlist link wordcount',
 		toolbar     : 'undo redo | styleselect | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link | forecolor backcolor',
-		statusbar	: true
+		statusbar	: true,
+		theme		: 'modern',
+		branding	: false
 	})
 	.constant('modelFormatConfig', {
 		'currency': {

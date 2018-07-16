@@ -44,7 +44,7 @@
 		'OpportunitiesService',
 		'ProposalsService',
 		'Notification',
-		'ModalService',
+		'modalService',
 		'ask',
 		'myproposal',
 		'OpportunitiesCommon',
@@ -237,7 +237,7 @@
 				modalService.showModal ({
 					size: 'lg',
 					templateUrl: '/modules/opportunities/client/views/swu-opportunity-modal-questions.html',
-					controller: function ($scope, $uibModalInstance) {
+					controller: ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
 
 						$scope.data = {};
 						$scope.data.questions = [];
@@ -277,7 +277,7 @@
 						$scope.commit = function () {
 							$uibModalInstance.close('commit');
 						}
-					}
+					}]
 				}, {
 				})
 				.then (function (resp) {
@@ -303,7 +303,7 @@
 				modalService.showModal ({
 					size: 'lg',
 					templateUrl: '/modules/opportunities/client/views/swu-opportunity-modal-interview.html',
-					controller: function ($scope, $uibModalInstance) {
+					controller: ['$scope', '$uibModalInstance', function ($scope, $uibModalInstance) {
 						$scope.data = {
 							score: proposal.scores.interview,
 							name : proposal.businessName
@@ -323,7 +323,7 @@
 								score  : $scope.data.score
 							});
 						}
-					}
+					}]
 				}, {
 				})
 				.then (function (resp) {
