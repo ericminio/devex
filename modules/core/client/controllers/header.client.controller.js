@@ -86,6 +86,7 @@
     }
   }
 
+  WarningModalController.$inject = ['$scope', 'Idle'];
   function WarningModalController($scope, Idle) {
     var qqq = this;
     qqq.countdown = Idle.getTimeout();
