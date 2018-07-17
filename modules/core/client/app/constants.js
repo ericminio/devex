@@ -7,14 +7,11 @@ import 'tinymce/plugins/textcolor';
 import 'tinymce/plugins/lists';
 import 'tinymce/plugins/advlist';
 
-import 'tinymce/skins/lightgray/skin.min.css';
-import 'tinymce/skins/lightgray/content.min.css';
-
-// require.context(
-//   'file-loader?name=[path][name].[ext]&context=node_modules/tinymce!tinymce/skins',
-//   true,
-//   /.*/
-// );
+require.context(
+  'file-loader?name=[path][name].[ext]&context=node_modules/tinymce!tinymce/skins',
+  true,
+  /.*/
+);
 
 (function () {
 	'use strict';

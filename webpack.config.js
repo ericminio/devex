@@ -54,22 +54,6 @@ module.exports = {
                 use: [
                     'imports-loader?this=>window'
                 ]
-            },
-            {
-                test: /\.css$/,
-                use: [
-                    'style-loader', 'css-loader'
-                ]
-            },
-            {
-                test: /\.(svg|woff|woff2|ttf|eot|otf|png|jpe?g|gif|ico)(\?v=[a-z0-9]\.[a-z0-9]\.[a-z0-9])?$/,
-                use: [
-                    {
-                        loader: 'file-loader',
-                        options: {
-                            name: '[path][name].[ext]'
-                        }
-                    }]
             }
         ]
     }

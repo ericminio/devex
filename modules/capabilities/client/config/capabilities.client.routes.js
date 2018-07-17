@@ -49,7 +49,7 @@
 			controller   : 'CapabilityViewController',
 			controllerAs : 'vm',
 			resolve: {
-				capability: ['$stateParams', 'CapabilitiesServices', function ($stateParams, CapabilitiesService) {
+				capability: ['$stateParams', 'CapabilitiesService', function ($stateParams, CapabilitiesService) {
 					return CapabilitiesService.get ({
 						capabilityId: $stateParams.capabilityId
 					}).$promise;
