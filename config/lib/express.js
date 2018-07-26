@@ -129,15 +129,15 @@ module.exports.initViewEngine = function (app) {
 module.exports.initSession = function (app, db) {
   // Express MongoDB session storage
   var sessionParameters = {
-    saveUninitialized : true,
-    resave            : false,
-    unset             : 'destroy',
-    secret            : config.sessionSecret,
-    name              : config.sessionKey,
-    cookie            : {
-      httpOnly : config.sessionCookie.httpOnly,
-      secure   : config.sessionCookie.secure && config.secure.ssl
-    }
+	saveUninitialized : true,
+	resave            : false,
+	unset             : 'destroy',
+	secret            : config.sessionSecret,
+	name              : config.sessionKey,
+	cookie            : {
+	  httpOnly : config.sessionCookie.httpOnly,
+	  secure   : config.sessionCookie.secure && config.secure.ssl
+	}
   };
   //
   // CC : BA-698 hopefully fix the memory leak issue. If this
@@ -153,10 +153,10 @@ module.exports.initSession = function (app, db) {
   	});
   }
   else {
-    sessionParameters.store = new MongoStore ({
-      url        : config.db.uri,
-      collection : config.sessionCollection
-    });
+	sessionParameters.store = new MongoStore ({
+	  url        : config.db.uri,
+	  collection : config.sessionCollection
+	});
   }
   //
   // CC : modified so that session persists in development
@@ -165,7 +165,7 @@ module.exports.initSession = function (app, db) {
   // uses of openshift
   //
   if (config.app.domain === 'http://localhost:3030' || process.env.NODE_ENV === 'development') {
-    sessionParameters.cookie.maxAge = config.sessionCookie.maxAge;
+	sessionParameters.cookie.maxAge = config.sessionCookie.maxAge;
   }
   app.use(session(sessionParameters));
   // Add Lusca CSRF Middleware
@@ -216,10 +216,19 @@ module.exports.initModulesClientRoutes = function (app) {
  * Configure the modules ACL policies
  */
 module.exports.initModulesServerPolicies = function (app) {
-  // Globbing policy files
-  config.files.server.policies.forEach(function (policyPath) {
-	require(path.resolve(policyPath)).invokeRolesPolicies();
-  });
+	// Globbing policy files
+	config.files.server.policies.forEach(function (policyPath) {
+		require(path.resolve(policyPath)).invokeRolesPolicies();
+	});
+
+	// Enable CORS from localhost only to allow content server to hit API
+	app.use((req, res, next) => {
+		if (req.hostname === 'localhost') {
+			res.header('Access-Control-Allow-Origin', req.get('origin'));
+			res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+		}
+		next();
+	})
 };
 
 /**

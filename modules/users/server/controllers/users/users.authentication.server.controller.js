@@ -7,8 +7,11 @@ var path = require('path'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   mongoose = require('mongoose'),
   passport = require('passport'),
+  request = require('request'),
   claimMessages = require(path.resolve('./modules/messages/server/controllers/messages.controller')).claimMessages,
   User = mongoose.model('User');
+
+var config = require('../../../../../config/config');
 
 // URLs for which user can't be redirected on signin
 var noReturnUrls = [
@@ -119,29 +122,89 @@ exports.oauthCall = function (strategy, scope) {
   };
 };
 
+exports.validate = () => {
+	return (req, res, next) => {
+		let code = req.query.code;
+		let options = {
+			url: 'https://github.com/login/oauth/access_token',
+			headers: {
+				'Accept': 'application/json'
+			},
+			form: {
+				code: code,
+				client_id: config.github.clientID,
+				client_secret: config.github.clientSecret
+			}
+		}
+		request.post(options, (err, httpResponse, body) => {
+			if (err) {
+				res.status(403).send('Error authenticating code with github: ' + err);
+			}
+
+			// github should have returned an access_token.  Use token to in another request to retrieve user
+			const access_token = JSON.parse(body).access_token;
+			let options = {
+				url: 'https://api.github.com/user?access_token=' + access_token,
+				headers: {
+					'User-Agent': 'request'
+				}
+			}
+			request(options, (err, httpResponse, body) => {
+
+				var providerData = JSON.parse(body);
+				// providerData.accessToken = accessToken;
+				// providerData.refreshToken = refreshToken;
+
+				// Create the user OAuth profile
+				var displayName = providerData.name;
+				var iSpace = displayName.indexOf(' '); // index of the whitespace following the firstName
+				var firstName = iSpace !== -1 ? displayName.substring(0, iSpace) : displayName;
+				var lastName = iSpace !== -1 ? displayName.substring(iSpace + 1) : '';
+
+				var providerUserProfile = {
+					firstName: firstName,
+					lastName: lastName,
+					displayName: displayName,
+					email: providerData.email,
+					username: providerData.login,
+					// jscs:disable requireCamelCaseOrUpperCaseIdentifiers
+					profileImageURL: (providerData.avatar_url) ? providerData.avatar_url : undefined,
+					// jscs:enable
+					provider: 'github',
+					providerIdentifierField: 'id',
+					providerData: providerData
+				};
+
+				this.saveOAuthUserProfile(req, providerUserProfile, (err, user, info) => {
+					res.json(user);
+				})
+			});
+		});
+	}
+}
+
 /**
  * OAuth callback
  */
 exports.oauthCallback = function (strategy) {
   return function (req, res, next) {
-
-    // info.redirect_to contains inteded redirect path
+	const refererPath = req.headers.referer;
     passport.authenticate(strategy, function (err, user, info) {
       if (err) {
-        return res.redirect('/authentication/signin?err=' + encodeURIComponent(errorHandler.getErrorMessage(err)));
+        return res.redirect(refererPath + '/authentication/signin?err=' + encodeURIComponent(errorHandler.getErrorMessage(err)));
       }
       if (!user) {
-        return res.redirect('/authentication/signin');
+        	return res.redirect(refererPath + '/authentication/signin');
       }
       req.login(user, function (err) {
         if (err) {
-          return res.redirect('/authentication/signin');
+          	return res.redirect(refererPath + '/authentication/signin');
         }
         if (!user.email) {
-          return res.redirect(info.redirect_to || '/settings/profile');
+          	return res.redirect(info.redirect_to || refererPath + '/settings/profile');
         }
         else {
-          return res.redirect(info.redirect_to || '/');
+		  	return res.redirect(info.redirect_to || refererPath + '/');
         }
       });
     })(req, res, next);

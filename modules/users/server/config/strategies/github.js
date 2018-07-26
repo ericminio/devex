@@ -12,7 +12,7 @@ module.exports = function (config) {
   passport.use(new GithubStrategy({
     clientID: config.github.clientID,
     clientSecret: config.github.clientSecret,
-    callbackURL: config.github.callbackURL,
+	callbackURL: config.github.callbackURL,
     passReqToCallback: true
   },
   function (req, accessToken, refreshToken, profile, done) {
