@@ -17,7 +17,8 @@ module.exports = {
             'ng-img-crop',
             'ng-file-upload',
             'ng-idle',
-            'angular-drag-and-drop-lists'
+			'angular-drag-and-drop-lists',
+			'angular-sanitize'
         ],
         appConfig: './modules/core/client/app/config.js',
         appInit: './modules/core/client/app/init.js',
@@ -38,7 +39,7 @@ module.exports = {
         mainFiles: ['index', 'compile/minified/ng-img-crop']
     },
     optimization: {
-        minimize: true
+        minimize: false
     },
     module: {
         rules: [
