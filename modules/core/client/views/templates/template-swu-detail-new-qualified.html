@@ -27,13 +27,14 @@
         text-align: right;
     }
     td:last-child {
-        white-space: revert;
-        width: 99%;
+        white-space: pre-wrap; /* Makes text in last column wrap instead of overflow */
+        width: 99%; /* Makes last column adjust size depending on size of columns to the left so that table fits full width of container */
     }
     @media (min-width: 768px) {
         .sticky-sidebar {
-            padding: 40px 0; 
-            position: -webkit-sticky; 
+            padding: 40px 0;
+            position: -webkit-sticky; /* This works for Safari */
+            position: sticky; /* This works for Chrome */
             top: 40px; 
             bottom: 40px;
         }
